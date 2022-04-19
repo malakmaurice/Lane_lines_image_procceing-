@@ -1,5 +1,6 @@
 import cv2
 import matplotlib.image as mpimg
+import numpy as np
 
 
 class LaneLines:
@@ -44,3 +45,10 @@ class LaneLines:
         self.nwindows = 9
         self.margin = 100
         self.minpix = 50
+
+    def extract_features(self, my_photo):
+        self.img = my_photo
+        self.window_height = np.int(my_photo.shape[0]//self.nwindows)
+        self.nonzero = my_photo.nonzero()
+        self.nonzerox = np.array(self.nonzero[1])
+        self.nonzeroy = np.array(self.nonzero[0])
