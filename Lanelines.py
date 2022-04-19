@@ -40,3 +40,7 @@ class LaneLines:
             norm_type=cv2.NORM_MINMAX,
             dtype=cv2.CV_8U
         )
+
+        self.nwindows = 9
+        self.margin = 100
+        self.minpix = 50
