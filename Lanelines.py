@@ -46,6 +46,7 @@ class LaneLines:
         self.margin = 100
         self.minpix = 50
 
+    # a method that extracts the feature of an image and store them in the class
     def extract_features(self, my_photo):
         self.img = my_photo
         self.window_height = np.int(my_photo.shape[0]//self.nwindows)
@@ -53,6 +54,7 @@ class LaneLines:
         self.nonzerox = np.array(self.nonzero[1])
         self.nonzeroy = np.array(self.nonzero[0])
 
+    # a method that finds the lane of an image
     def fit_poly(self, input_photo):
         first_hor, first_ver, second_hor, second_hor, result_image = self.find_lane_pixels(
             input_photo)
