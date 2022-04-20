@@ -96,3 +96,19 @@ class LaneLines:
     def forward(self, img):
         self.extract_features(img)
         return self.fit_poly(img)
+
+    # return all pixels in a specific window
+    # inputs:
+    #   center (tuple): coordinates of the center of the window
+    #   margin (int): half width of the window
+    #   height (int): height of the window
+    # outputs:
+    #   (np.array): x coordinates of pixels that lie inside the window
+    #   (np.array): y coordinates of pixels that lie inside the window
+    def pixels_in_window(self, center, margin, height):
+        top_left = (center[0]-margin, center[1]-height//2)
+        bottom_right = (center[0]+margin, center[1]+height//2)
+
+        conditionx = (top_left[0] <= self.nonzerox) & (self.nonzerox <= bottom_right[0])
+        conditiony = (top_left[1] <= self.nonzeroy) & (self.nonzeroy <= bottom_right[1])
+        return self.nonzerox[conditionx&conditiony], self.nonzeroy[conditionx&conditiony]
