@@ -89,3 +89,7 @@ class LaneLines:
         lR, rR, pos = self.measure_curvature()
 
         return result_image
+
+    def forward(self, img):
+        self.extract_features(img)
+        return self.fit_poly(img)
