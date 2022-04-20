@@ -90,6 +90,7 @@ class LaneLines:
 
         return result_image
 
+    # a method that detects the lanes of a given image through taking a binary image and returning an image with the lane pixels
     def forward(self, img):
         self.extract_features(img)
         return self.fit_poly(img)
