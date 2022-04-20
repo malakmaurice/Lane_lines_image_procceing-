@@ -161,7 +161,7 @@ class LaneLines:
                 right_x_current = np.int32(np.mean(good_right_x))
 
         return left_x, left_y, right_x, right_y, output_img
-        def plot(self, out_img):
+    def plot(self, out_img):
         np.set_printoptions(precision=6, suppress=True)
         lR, rR, pos = self.measure_curvature()
 
