@@ -9,7 +9,7 @@ Options:
 -h --help                               show this screen
 --video                                 process video file instead of image
 """
-
+import sys
 import numpy as np
 import matplotlib.image as mpimg
 import cv2
@@ -60,7 +60,7 @@ def main():
     args = docopt(__doc__)
     input = args['INPUT_PATH']
     output = args['OUTPUT_PATH']
-
+    
     findLaneLines = FindLaneLines()
     if args['--video']:
         findLaneLines.process_video(input, output)
