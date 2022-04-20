@@ -19,7 +19,7 @@ from moviepy.editor import VideoFileClip
 from CameraCalibration import CameraCalibration
 from Thresholding import *
 from PerspectiveTransformation import *
-from LaneLines import *
+from Lanelines import *
 
 class FindLaneLines:
     """ This class is for parameter tunning.
