@@ -96,3 +96,65 @@ class LaneLines:
     def forward(self, img):
         self.extract_features(img)
         return self.fit_poly(img)
+
+    # return all pixels in a specific window
+    # inputs:
+    #   center (tuple): coordinates of the center of the window
+    #   margin (int): half width of the window
+    #   height (int): height of the window
+    # outputs:
+    #   (np.array): x coordinates of pixels that lie inside the window
+    #   (np.array): y coordinates of pixels that lie inside the window
+    def pixels_in_window(self, center, margin, height):
+        top_left = (center[0]-margin, center[1]-height//2)
+        bottom_right = (center[0]+margin, center[1]+height//2)
+
+        conditionx = (top_left[0] <= self.nonzerox) & (self.nonzerox <= bottom_right[0])
+        conditiony = (top_left[1] <= self.nonzeroy) & (self.nonzeroy <= bottom_right[1])
+        return self.nonzerox[conditionx&conditiony], self.nonzeroy[conditionx&conditiony]
+
+
+    # return lane pixels from a binary warped image
+    # inputs:
+    #   img (np.array): a binary warped image
+    # outputs:
+    #   left_x (np.array): x coordinates of left lane pixels
+    #   left_y (np.array): y coordinates of left lane pixels
+    #   right_x (np.array): x coordinates of right lane pixels
+    #   right_y (np.array): y coordinates of right lane pixels
+    #   output_img (np.array): A RGB image that use to display result later on
+    def find_lane_pixels(self, img):
+        assert(len(img.shape) == 2)
+
+        output_img = np.dstack((img, img, img))
+
+        histogram = hist(img)
+        middle_point = histogram.shape[0]//2
+        left_x_base = np.argmax(histogram[:middle_point])
+        right_x_base = np.argmax(histogram[middle_point:]) + middle_point
+
+        left_x_current = left_x_base
+        right_x_current = right_x_base
+        y_current = img.shape[0] + self.window_height//2
+
+        left_x, left_y, right_x, right_y = [], [], [], []
+
+        for _ in range(self.nwindows):
+            y_current -= self.window_height
+            center_left = (left_x_current, y_current)
+            center_right = (right_x_current, y_current)
+
+            good_left_x, good_left_y = self.pixels_in_window(center_left, self.margin, self.window_height)
+            good_right_x, good_right_y = self.pixels_in_window(center_right, self.margin, self.window_height)
+
+            left_x.extend(good_left_x)
+            left_y.extend(good_left_y)
+            right_x.extend(good_right_x)
+            right_y.extend(good_right_y)
+
+            if len(good_left_x) > self.minpix:
+                left_x_current = np.int32(np.mean(good_left_x))
+            if len(good_right_x) > self.minpix:
+                right_x_current = np.int32(np.mean(good_right_x))
+
+        return left_x, left_y, right_x, right_y, output_img
