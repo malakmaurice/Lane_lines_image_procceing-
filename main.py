@@ -1,14 +1,3 @@
-"""
-Lane Lines Detection pipeline
-
-Usage:
-    main.py [--video] INPUT_PATH OUTPUT_PATH 
-
-Options:
-
--h --help                               show this screen
---video                                 process video file instead of image
-"""
 from ctypes.wintypes import PINT
 import sys
 from cv2 import resize
@@ -16,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import cv2
-from docopt import docopt
+import sys
 from IPython.display import HTML, Video
 from moviepy.editor import VideoFileClip
 from CameraCalibration import CameraCalibration
@@ -86,6 +75,16 @@ class FindLaneLines:
         
         return out_img
 
+    def process_image(self, input_path, output_path):
+        img = mpimg.imread(input_path)
+        out_img = self.forward_without_debug(img)
+        mpimg.imsave(output_path, out_img)
+
+    def process_image_debug(self, input_path, output_path):
+        img = mpimg.imread(input_path)
+        out_img = self.forward(img)
+        mpimg.imsave(output_path, out_img)
+
     def process_video(self, input_path, output_path,):
 
         clip = VideoFileClip(input_path)
@@ -98,14 +97,30 @@ class FindLaneLines:
         out_clip.write_videofile(output_path, audio=False)
 
 def main():
-    args = docopt(__doc__)
-    input = args['INPUT_PATH']
-    output = args['OUTPUT_PATH']
+
+    # For Phase 1
     findLaneLines = FindLaneLines()
-    if args['--video']:
-        findLaneLines.process_video_debug(input, output)
+    type = sys.argv[1]
+    debug = sys.argv[2]
+    input = sys.argv[3]
+    output = sys.argv[4]
+    
+    if type == "--image":
+        if debug == "--no-debug":
+            findLaneLines.process_image(input, output)
+        elif debug == "--debug":
+            findLaneLines.process_image_debug(input, output)
+        else:
+            print("Unsupported Mode")
+    elif type == "--video":
+        if debug == "--no-debug":
+            findLaneLines.process_video(input, output)
+        elif debug == "--debug":
+            findLaneLines.process_video_debug(input, output)
+        else:
+            print("Unsupported Mode")   
     else:
-        findLaneLines.process_video(input, output)
+        print("Unsupported Operation")
 
 
 if __name__ == "__main__":
