@@ -1,5 +1,5 @@
-opencv-python==4.5.5.64
-matplotlib==3.5.2
-ipython==8.3.0
-moviepy==1.0.3
-notebook==6.4.11
+opencv-python
+matplotlib
+ipython
+moviepy
+notebook
