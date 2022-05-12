@@ -1,4 +1,3 @@
-from ctypes.wintypes import PINT
 import sys
 from cv2 import resize
 import numpy as np
