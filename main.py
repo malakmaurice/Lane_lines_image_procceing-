@@ -62,7 +62,7 @@ class FindLaneLines:
         img = self.transform.backward(img)
         img5= self.resize_image(img,0.5)
         
-        added_img = np.concatenate((img4,img5),axis = 1)
+        added_img = np.concatenate((img5,img4),axis = 1)
      
         out_img = cv2.addWeighted(out_img, 1, img, 0.6, 0)
         out_img = self.lanelines.plot(out_img)
