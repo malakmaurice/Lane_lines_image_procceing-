@@ -160,9 +160,9 @@ def main():
 
     # For Phase 2
     classifier_path = "phase2/Classifier.p"
-    data_path = "phase2/data"
 
-    operation = sys.argv[1] 
+    operation = sys.argv[1]
+    data_path = sys.argv[2] if operation == "--train-model" else None 
     type = sys.argv[2] if operation != "--train-model" else None
     debug = sys.argv[3] if operation != "--train-model" else None
     input = sys.argv[4] if operation != "--train-model" else None
