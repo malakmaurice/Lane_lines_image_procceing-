@@ -168,7 +168,7 @@ def main():
     input = sys.argv[4] if operation != "--train-model" else None
     output = sys.argv[5] if operation != "--train-model" else None
    
-    if operation == "--detect-lanes":
+    if operation == "--detect-lane":
         if type == "--image":
             if debug == "--no-debug":
                 findLaneLines.process_image(input, output)
