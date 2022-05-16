@@ -1,2 +1,7 @@
 @echo off
-python main.py --video project_video.mp4 aa.mp4
+SET OPE=%1
+SET FILE_TYPE=%2
+SET DEBUG_MODE=%3
+SET INPUT=%4
+SET OUTPUT=%5
+python main.py %OPE% %FILE_TYPE% %DEBUG_MODE% %INPUT% %OUTPUT%

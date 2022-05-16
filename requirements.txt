@@ -1,0 +1,7 @@
+opencv-python
+matplotlib
+ipython
+moviepy
+notebook
+scikit-learn
+scikit-image
