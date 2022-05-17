@@ -18,7 +18,7 @@ def save_classifier(pickle_file, svc, X_scaler, params):
                     "hist_feat": params["hist_feat"],
                     "hog_feat": params["hog_feat"]
                 },
-                pfile, pickle.HIGHEST_PROTOCOL)
+                pfile)
     except Exception as e:
         print("Unable to save classifier to", pickle_file, ":", e)
         raise
