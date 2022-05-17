@@ -54,16 +54,18 @@ def apply_nms(bboxes, confidences, score_thresh, nms_thresh):
 # draw the bounding boxes and writes the labels on the image
 def draw_boxes_with_labels(img, idxs, bboxes, confidences, classIDs, labels, font_scale, thick):
     draw_img = np.copy(img)
+    if len(idxs) > 0:
+        for i in idxs.flatten():
+            (x,y) = [bboxes[i][0], bboxes[i][1]]
+            (w,h) = [bboxes[i][2], bboxes[i][3]]
+        
+            label_name = labels[classIDs[i]]
+            label_confidence = confidences[i]
+            message = label_name + ": " + str(label_confidence)
 
-    for i in idxs.flatten():
-        (x,y) = [bboxes[i][0], bboxes[i][1]]
-        (w,h) = [bboxes[i][2], bboxes[i][3]]
-    
-        label_name = labels[classIDs[i]]
-        label_confidence = confidences[i]
-        message = label_name + ": " + str(label_confidence)
+            cv2.rectangle(draw_img, (x,y), (x+w,y+h), (0,255,0), thick)
+            cv2.putText(draw_img, message, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0,255,0), 2)
 
-        cv2.rectangle(draw_img, (x,y), (x+w,y+h), (0,255,0), thick)
-        cv2.putText(draw_img, message, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, font_scale, (0,255,0), 2)
-
-    return draw_img
+        return draw_img
+    else:
+        return draw_img

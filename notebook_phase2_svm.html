@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>notebook_phase2</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>notebook_phase2_svm</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14582,8 +14582,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
-<span class="kn">from</span> <span class="nn">main</span> <span class="kn">import</span> <span class="n">DetectCars</span>
-<span class="kn">from</span> <span class="nn">phase2.train</span> <span class="kn">import</span> <span class="n">train</span>
+<span class="kn">from</span> <span class="nn">main</span> <span class="kn">import</span> <span class="n">DetectCarsSVM</span>
 </pre></div>
 
      </div>
@@ -14635,7 +14634,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;test_images/test4.jpg&#39;</span><span class="p">)</span>
 <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;test_images/test5.jpg&#39;</span><span class="p">)</span>
 <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;test_images/test6.jpg&#39;</span><span class="p">)</span>
-<span class="n">out_folder</span> <span class="o">=</span> <span class="s2">&quot;output_images/phase2/&quot;</span>
+<span class="n">out_folder</span> <span class="o">=</span> <span class="s2">&quot;output_images/phase2/SVM/&quot;</span>
 </pre></div>
 
      </div>
@@ -14650,7 +14649,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h3 id="Instantiate-DetectCars-class">Instantiate DetectCars class<a class="anchor-link" href="#Instantiate-DetectCars-class">&#182;</a></h3>
+<h3 id="Instantiate-DetectCarsSVM-class">Instantiate DetectCarsSVM class<a class="anchor-link" href="#Instantiate-DetectCarsSVM-class">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -14662,7 +14661,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span> <span class="o">=</span> <span class="n">DetectCars</span><span class="p">(</span><span class="n">classifier_path</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span> <span class="o">=</span> <span class="n">DetectCarsSVM</span><span class="p">(</span><span class="n">classifier_path</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14689,7 +14688,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out1.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out1.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out1.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -14713,7 +14712,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.76  seconds
+<pre>SVM Time taken:  0.76  seconds
 </pre>
 </div>
 </div>
@@ -14727,7 +14726,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a8275660&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a37be5a80&gt;</pre>
 </div>
 
 </div>
@@ -14763,7 +14762,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out2.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out2.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out2.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -14787,7 +14786,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.77  seconds
+<pre>SVM Time taken:  0.77  seconds
 </pre>
 </div>
 </div>
@@ -14801,7 +14800,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a85dee60&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a37f57280&gt;</pre>
 </div>
 
 </div>
@@ -14837,7 +14836,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out3.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out3.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out3.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -14861,7 +14860,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.77  seconds
+<pre>SVM Time taken:  0.77  seconds
 </pre>
 </div>
 </div>
@@ -14875,7 +14874,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a864f670&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a37fc3a90&gt;</pre>
 </div>
 
 </div>
@@ -14911,7 +14910,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out4.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out4.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out4.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -14935,7 +14934,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.76  seconds
+<pre>SVM Time taken:  0.76  seconds
 </pre>
 </div>
 </div>
@@ -14949,7 +14948,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a8c2f670&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a385a7a90&gt;</pre>
 </div>
 
 </div>
@@ -14985,7 +14984,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out5.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out5.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out5.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -15009,7 +15008,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.76  seconds
+<pre>SVM Time taken:  0.76  seconds
 </pre>
 </div>
 </div>
@@ -15023,7 +15022,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a8c9b640&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a38613a60&gt;</pre>
 </div>
 
 </div>
@@ -15059,7 +15058,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out6.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out6.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out6.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -15083,7 +15082,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.77  seconds
+<pre>SVM Time taken:  0.77  seconds
 </pre>
 </div>
 </div>
@@ -15097,7 +15096,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a8cfb700&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a38673b20&gt;</pre>
 </div>
 
 </div>
@@ -15133,7 +15132,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out7.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out7.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out7.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -15157,7 +15156,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.76  seconds
+<pre>SVM Time taken:  0.77  seconds
 </pre>
 </div>
 </div>
@@ -15171,7 +15170,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a92c7790&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a38c3bbe0&gt;</pre>
 </div>
 
 </div>
@@ -15207,7 +15206,7 @@ jp-needs-light-background
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCars</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out8.jpg&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">detectCarsSVM</span><span class="o">.</span><span class="n">process_image</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">out_folder</span><span class="o">+</span><span class="s2">&quot;out8.jpg&quot;</span><span class="p">)</span>
 <span class="n">img</span><span class="o">=</span><span class="n">mpimg</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">out_folder</span><span class="o">+</span><span class="s1">&#39;out8.jpg&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
 </pre></div>
@@ -15231,7 +15230,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Time taken:  0.78  seconds
+<pre>SVM Time taken:  0.76  seconds
 </pre>
 </div>
 </div>
@@ -15245,7 +15244,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>&lt;matplotlib.image.AxesImage at 0x1e9a9333790&gt;</pre>
+<pre>&lt;matplotlib.image.AxesImage at 0x23a38cabbe0&gt;</pre>
 </div>
 
 </div>
