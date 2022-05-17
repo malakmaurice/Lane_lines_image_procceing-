@@ -33,3 +33,18 @@ def analyze_output(layers_output, img_height, img_width, confidence_thresh):
                 classIDs.append(classID)
     
     return bboxes, confidences, classIDs
+
+
+
+# get the layer names from the network
+def get_layer_names(net):
+    names = net.getLayerNames()
+    return [names[i- 1] for i in net.getUnconnectedOutLayers()]
+
+# creates a blob from the image to be used in the neural network
+def create_blob_from_image(img, scale_factor, size, crop, swap_red_and_blue):
+    return cv2.dnn.blobFromImage(img, scale_factor, size, crop=crop, swapRB=swap_red_and_blue)
+
+# applies non maximum suppression to the bounding boxes
+def apply_nms(bboxes, confidences, score_thresh, nms_thresh):
+    return cv2.dnn.NMSBoxes(bboxes, confidences, score_thresh, nms_thresh)
