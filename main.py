@@ -119,7 +119,7 @@ class DetectCarsYOLO:
 
         bboxes, confidences, classIDs = analyze_output(layers_output=layers_output, img_height=height, img_width=width, confidence_thresh=0.85)
 
-        idx = apply_nms(bboxes=bboxes, confidences=confidences, score_thresh=0.8, nms_thresh=0.8)
+        idx = apply_nms(bboxes=bboxes, confidences=confidences, score_thresh=0.8, nms_thresh=0.4)
 
         final_img = draw_boxes_with_labels(img=img, idxs=idx, bboxes=bboxes, confidences=confidences, classIDs=classIDs, labels=self.labels, font_scale=0.5, thick=3)
 
