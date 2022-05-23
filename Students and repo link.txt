@@ -6,3 +6,11 @@ Malak Mourice Henry		1701462		sec 5
 
 outputs
 https://drive.google.com/drive/folders/1jsCUQx13wl2iNkYaZXzwvM8nG9x9shYV?usp=sharing
+
+
+Notes:
+YOLO weights are not uploaded, so you have to download them from https://pjreddie.com/darknet/yolo/ 
+(make sure that you download the weights corresponding to YOLOv3-416)
+
+the config file for YOLO can be found in phase2/YOLO/yolov3.cfg
+the labels file for YOLO can be found in phase2/YOLO/coco.names
